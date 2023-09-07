@@ -41,5 +41,6 @@
 .zero, .one, .two, .three, .four, .five, .six, .seven, .eight {
 
     background-color: white;
+    cursor: pointer;
 
 }

@@ -1,26 +1,30 @@
 const xImage = '<img src="./images/x.png" alt=""></img>';
 const oImage = '<img src="./images/o.png" alt="">';
 
-let arr = [];
-arr.length = 9;
+const index = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 
-arr[0] = document.querySelector('.zero');
-arr[1] = document.querySelector('.one');
-arr[2] = document.querySelector('.two');
-arr[3] = document.querySelector('.three');
-arr[4] = document.querySelector('.four');
-arr[5] = document.querySelector('.five');
-arr[6] = document.querySelector('.six');
-arr[7] = document.querySelector('.seven');
-arr[8] = document.querySelector('.eight');
+const buttonObject = (number) => {
+
+    const index = document.querySelector(`.${number}`);
+
+    return {index};
+    
+}
+
+let board = [];
+board.length = 9;
+
+for(let i = 0; i < board.length; i++) {
+    board[i] = buttonObject(index[i]);
+}
 
 //!function for the user to click on any button and get xImage
 
-for(let i = 0; i < arr.length; i++) {
+for(let i = 0; i < board.length; i++) {
 
-    arr[i].addEventListener('click', () => {
-        if(arr[i].innerHTML != oImage) {
-            arr[i].innerHTML = xImage;
+    board[i].index.addEventListener('click', () => {
+        if(board[i].index.innerHTML != oImage) {
+            board[i].index.innerHTML = xImage;
         }
     })
 }
