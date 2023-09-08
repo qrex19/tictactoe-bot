@@ -58,10 +58,11 @@ function computersTurn() {
 function game() {
   for (let i = 0; i < board.length; i++) {
     board[i].index.addEventListener("click", () => {
+
       usersTurn(board[i], i);
-      if (optionsArr.length != 0) {
-        computersTurn();
-      }
+
+      computersTurn();
+      
     });
   }
 }
