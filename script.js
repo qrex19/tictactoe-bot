@@ -1,7 +1,7 @@
-const xImage = '<img src="./images/x.png" alt=""></img>';
+const xImage = '<img src="./images/x.png" alt="">';
 const oImage = '<img src="./images/o.png" alt="">';
 
-const index = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
+let boardStatus = true; //* default mode
 
 const buttonObject = (number) => {
 
@@ -14,18 +14,47 @@ const buttonObject = (number) => {
 let board = [];
 board.length = 9;
 
+const index = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
+
 for(let i = 0; i < board.length; i++) {
     board[i] = buttonObject(index[i]);
 }
 
-//!function for the user to click on any button and get xImage
-
-for(let i = 0; i < board.length; i++) {
-
-    board[i].index.addEventListener('click', () => {
-        if(board[i].index.innerHTML != oImage) {
-            board[i].index.innerHTML = xImage;
-        }
-    })
+//* to generate a random number between 0 and 8 (both inclusive)
+function randomNumber() {
+    return Math.floor(Math.random() * (9));
 }
 
+function computersturn() {
+
+    //! use a better algorithm!
+
+    
+
+}
+
+//* The gameplay function
+function gameTurn() {
+
+    for(let i = 0;i < board.length; i++) {
+
+        board[i].index.addEventListener('click', () => {
+            //! game logic here
+
+            //put an xImage, if no sign is in the particular button
+            if(board[i].index.innerHTML != oImage) {
+                board[i].index.innerHTML = xImage;
+            }
+
+            computersturn();
+
+    
+        })
+    
+    }
+
+}
+
+
+
+gameTurn();
