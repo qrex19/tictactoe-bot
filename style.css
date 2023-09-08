@@ -1,46 +1,51 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F0F0F0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
 }
 
 .buttonbox {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    gap: 5px;
-    background-color: grey;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  gap: 5px;
+  background-color: grey;
 }
 
-.rowone, .rowtwo, .rowthree {
-
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-
+.rowone,
+.rowtwo,
+.rowthree {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
 
 .button {
-    width: 100px;
-    height: 100px;
-    margin: 0;
-    padding: 0;
-    border-style: none;
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  border-style: none;
 }
 
-.zero, .one, .two, .three, .four, .five, .six, .seven, .eight {
-
-    background-color: white;
-    cursor: pointer;
-
+.zero,
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight {
+  background-color: white;
+  cursor: pointer;
 }
