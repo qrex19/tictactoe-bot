@@ -46,27 +46,22 @@ function usersTurn(object, i) {
 }
 
 function computersTurn() {
+  //! This algo works for now but improve it to make the tictactoe bot better
 
   let num = optionsArr[Math.floor(Math.random() * optionsArr.length)];
 
   board[num].index.innerHTML = oImage;
   optionsArr.splice(returnIndex(optionsArr, num), 1);
-  console.log(optionsArr);
 }
 
 //* The gameplay function
 function game() {
   for (let i = 0; i < board.length; i++) {
     board[i].index.addEventListener("click", () => {
-
       usersTurn(board[i], i);
-    //   computersTurn();
-    if(optionsArr.length == 0) {
-        console.log(optionsArr);
-    }else {
+      if (optionsArr.length != 0) {
         computersTurn();
-    }
-
+      }
     });
   }
 }
