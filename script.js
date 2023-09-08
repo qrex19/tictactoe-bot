@@ -36,6 +36,8 @@ function returnIndex(arr, target) {
   }
 }
 
+let optionsArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
 function usersTurn(object, i) {
   if (object.index.innerHTML != oImage && object.index.innerHTML != xImage) {
     object.index.innerHTML = xImage;
@@ -44,15 +46,13 @@ function usersTurn(object, i) {
 }
 
 function computersTurn() {
-  let rand = Math.floor(Math.random() * optionsArr.length); //returns a random index from the array
-  let num = optionsArr[rand];
+
+  let num = optionsArr[Math.floor(Math.random() * optionsArr.length)];
 
   board[num].index.innerHTML = oImage;
   optionsArr.splice(returnIndex(optionsArr, num), 1);
   console.log(optionsArr);
 }
-
-let optionsArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 //* The gameplay function
 function game() {
@@ -60,8 +60,13 @@ function game() {
     board[i].index.addEventListener("click", () => {
 
       usersTurn(board[i], i);
-      computersTurn();
-      
+    //   computersTurn();
+    if(optionsArr.length == 0) {
+        console.log(optionsArr);
+    }else {
+        computersTurn();
+    }
+
     });
   }
 }
