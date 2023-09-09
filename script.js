@@ -134,13 +134,11 @@ function computersTurn() {
   checkStatus();
 }
 
-
 function game() {
   for (let i = 0; i < board.length; i++) {
     board[i].index.addEventListener("click", () => {
-
       usersTurn(board[i], i);
-      setTimeout(computersTurn, 300);
+      setTimeout(computersTurn, 250);
     });
   }
 }
