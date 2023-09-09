@@ -120,6 +120,7 @@ function usersTurn(object, i) {
   if (object.index.innerHTML != oImage && object.index.innerHTML != xImage) {
     object.index.innerHTML = xImage;
     optionsArr.splice(returnIndex(optionsArr, i), 1);
+    checkStatus();
   }
 }
 
@@ -130,16 +131,17 @@ function computersTurn() {
 
   board[num].index.innerHTML = oImage;
   optionsArr.splice(returnIndex(optionsArr, num), 1);
+  checkStatus();
 }
 
 
 function game() {
   for (let i = 0; i < board.length; i++) {
     board[i].index.addEventListener("click", () => {
+
       usersTurn(board[i], i);
-      checkStatus();
-      setTimeout(computersTurn, 300);
-      checkStatus();
+      setTimeout(computersTurn, 250);
+      
     });
   }
 }
