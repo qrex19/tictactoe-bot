@@ -140,9 +140,7 @@ function game() {
     board[i].index.addEventListener("click", () => {
 
       usersTurn(board[i], i);
-      checkStatus();
       setTimeout(computersTurn, 300);
-      checkStatus();
     });
   }
 }
