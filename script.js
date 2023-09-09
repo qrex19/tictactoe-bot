@@ -67,7 +67,9 @@ const gameStatus = (() => {
 })();
 
 function checkStatus() {
-  if (gameStatus.computerWin(board) == true) {
+  if (gameStatus.userWin(board) == true) {
+    gameStatus.congratulate("you");
+  }else if (gameStatus.computerWin(board) == true) {
     gameStatus.congratulate("computer");
   } else if (gameStatus.userWin(board) == true) {
     gameStatus.congratulate("you");
@@ -75,6 +77,31 @@ function checkStatus() {
     gameStatus.gameDrawMessage();
   }
 }
+
+const Turns = (() => {
+
+  function computersTurn() {
+    //* This algo works for now but improve it to make the tictactoe bot better
+  
+    let num = optionsArr[Math.floor(Math.random() * optionsArr.length)];
+  
+    board[num].index.innerHTML = oImage;
+    optionsArr.splice(returnIndex(optionsArr, num), 1);
+    checkStatus();
+  }
+
+  function usersTurn(object, i) {
+    if (object.index.innerHTML != oImage && object.index.innerHTML != xImage) {
+      object.index.innerHTML = xImage;
+      optionsArr.splice(returnIndex(optionsArr, i), 1);
+      checkStatus();
+    }
+  }
+
+
+  return {computersTurn, usersTurn};
+
+})();
 
 const xImage = '<img src="./images/x.png" alt="">';
 const oImage = '<img src="./images/o.png" alt="">';
@@ -116,29 +143,13 @@ function returnIndex(arr, target) {
 
 let optionsArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-function usersTurn(object, i) {
-  if (object.index.innerHTML != oImage && object.index.innerHTML != xImage) {
-    object.index.innerHTML = xImage;
-    optionsArr.splice(returnIndex(optionsArr, i), 1);
-    checkStatus();
-  }
-}
-
-function computersTurn() {
-  //* This algo works for now but improve it to make the tictactoe bot better
-
-  let num = optionsArr[Math.floor(Math.random() * optionsArr.length)];
-
-  board[num].index.innerHTML = oImage;
-  optionsArr.splice(returnIndex(optionsArr, num), 1);
-  checkStatus();
-}
-
 function game() {
   for (let i = 0; i < board.length; i++) {
     board[i].index.addEventListener("click", () => {
-      usersTurn(board[i], i);
-      setTimeout(computersTurn, 250);
+
+      Turns.usersTurn(board[i], i);
+      setTimeout(Turns.computersTurn, 250);
+
     });
   }
 }
