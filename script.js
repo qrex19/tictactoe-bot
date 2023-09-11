@@ -71,8 +71,6 @@ function checkStatus() {
     gameStatus.congratulate("you");
   }else if (gameStatus.computerWin(board) == true) {
     gameStatus.congratulate("computer");
-  } else if (gameStatus.userWin(board) == true) {
-    gameStatus.congratulate("you");
   } else if (gameStatus.gameDraw(board, optionsArr) == true) {
     gameStatus.gameDrawMessage();
   }
