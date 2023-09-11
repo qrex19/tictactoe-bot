@@ -40,16 +40,25 @@ const gameStatus = (() => {
     return false;
   }
 
-  function gameDraw(board, optionsArr) {
-    if (
-      userWin(board) == false &&
-      computerWin(board) == false &&
-      optionsArr.length == 0
-    ) {
-      return true;
+  function gameDraw(board) {
+
+    let con = true;
+    
+    for(let i = 0; i < board.length; i++) {
+
+      if(board[i].index.innerHTML == xImage || board[i].index.innerHTML == oImage) {
+        continue;
+      }else {
+        con = false;
+        break;
+      }
+
+      
+
     }
 
-    return false;
+    return con;
+
   }
 
   function gameDrawMessage() {
@@ -68,44 +77,34 @@ const gameStatus = (() => {
 
 function checkStatus() {
   if (gameStatus.userWin(board) == true) {
-    gameStatus.congratulate("you");
+    gameStatus.congratulate("X");
   }else if (gameStatus.computerWin(board) == true) {
-    gameStatus.congratulate("computer");
-  } else if (gameStatus.gameDraw(board, optionsArr) == true) {
+    gameStatus.congratulate("O");
+  } else if (gameStatus.gameDraw(board) == true) {
     gameStatus.gameDrawMessage();
   }
 }
 
-const Turns = (() => {
-
-  function computersTurn() {
-    //* This algo works for now but improve it to make the tictactoe bot better
-  
-    let num = optionsArr[Math.floor(Math.random() * optionsArr.length)];
-  
-    board[num].index.innerHTML = oImage;
-    optionsArr.splice(returnIndex(optionsArr, num), 1);
-    checkStatus();
-  }
-
-  function usersTurn(object, i) {
-    if (object.index.innerHTML != oImage && object.index.innerHTML != xImage) {
-      object.index.innerHTML = xImage;
-      optionsArr.splice(returnIndex(optionsArr, i), 1);
-      checkStatus();
-    }
-  }
-
-
-  return {computersTurn, usersTurn};
-
-})();
-
 const xImage = '<img src="./images/x.png" alt="">';
 const oImage = '<img src="./images/o.png" alt="">';
 
+let turn = true; //! true for 'x' turn, false for 'y' turn
+
 const buttonObject = (number) => {
   const index = document.querySelector(`.${number}`);
+
+  index.addEventListener('click', () => {
+
+    if(index.innerHTML != xImage && index.innerHTML != oImage && turn == true) {
+      index.innerHTML = xImage
+      turn = false;
+      checkStatus();
+    }else if(index.innerHTML != xImage && index.innerHTML != oImage && turn == false){
+      index.innerHTML = oImage
+      turn = true;
+      checkStatus();
+    }
+  })
 
   return { index };
 };
@@ -128,29 +127,3 @@ const index = [
 for (let i = 0; i < board.length; i++) {
   board[i] = buttonObject(index[i]);
 }
-
-//* to generate a random number between 0 and 8 (both inclusive)
-
-function returnIndex(arr, target) {
-  for (let a = 0; a < arr.length; a++) {
-    if (arr[a] == target) {
-      return a;
-    }
-  }
-}
-
-let optionsArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-function game() {
-  for (let i = 0; i < board.length; i++) {
-    board[i].index.addEventListener("click", () => {
-
-      Turns.usersTurn(board[i], i);
-      setTimeout(Turns.computersTurn, 250);
-
-    });
-  }
-}
-
-//* The gameplay function
-game();
